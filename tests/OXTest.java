@@ -6,16 +6,17 @@ class OXTest {
     @Test
     void getTableString() {
         OX ox = new OX();
-        assertEquals(" 012\n"+
+        assertEquals(" 012\n" +
                 "0---\n" +
                 "1---\n" +
                 "2---\n", ox.getTableString());
-
     }
+
     @Test
     void getCurrentPlayer() {
         OX ox = new OX();
         assertEquals("X", ox.getCurrentPlayer());
+
     }
 
     @Test
@@ -26,19 +27,32 @@ class OXTest {
     }
 
     @Test
+    void putAt0_0() {
+        OX ox = new OX();
+        ox.put(0, 0);
+        assertEquals(" 012\n" +
+                "0X--\n" +
+                "1---\n" +
+                "2---\n", ox.getTableString());
+
+
+    }
+
+    @Test
     void putAt0_0Twice() {
         OX ox = new OX();
-        assertTrue(ox.put(0,0));
-        assertFalse(ox.put(0,0));
+        assertTrue(ox.put(0, 0));
+        assertFalse(ox.put(0, 0));
     }
 
     @Test
     void putOverTable() {
         OX ox = new OX();
-        assertFalse(ox.put(0,-1));
-        assertFalse(ox.put(0,3));
-        assertFalse(ox.put(3,-1));
-        assertFalse(ox.put(-1,3));
+        assertFalse(ox.put(0, -1));
+        assertFalse(ox.put(0, 3));
+        assertFalse(ox.put(3, -1));
+        assertFalse(ox.put(-1, 3));
+
     }
 
     @Test
@@ -49,7 +63,8 @@ class OXTest {
                 "0X--\n" +
                 "1---\n" +
                 "2---\n", ox.getTableString());
-        assertEquals("X",ox.get(0,0));
+        assertEquals("X", ox.get(0, 0));
+
     }
 
     @Test
@@ -59,20 +74,21 @@ class OXTest {
         assertNull(ox.get(0, 3));
         assertNull(ox.get(3, -1));
         assertNull(ox.get(-1, 3));
+
     }
 
     @Test
     void checkWinCol0() {
         OX ox = new OX();
-        ox.put(0,0);
-        ox.put(0,1);
-        ox.put(0,2);
-        assertTrue(ox.checkWin(0,0));
-        assertTrue(ox.checkWin(0,1));
-        assertTrue(ox.checkWin(0,2));
-        assertFalse(ox.checkWin(1,0));
-        assertFalse(ox.checkWin(1,1));
-        assertFalse(ox.checkWin(1,2));
+        ox.put(0, 0);
+        ox.put(0, 1);
+        ox.put(0, 2);
+        assertTrue(ox.checkWin(0, 0));
+        assertTrue(ox.checkWin(0, 1));
+        assertTrue(ox.checkWin(0, 2));
+        assertFalse(ox.checkWin(1, 0));
+        assertFalse(ox.checkWin(1, 1));
+        assertFalse(ox.checkWin(1, 2));
     }
 
     @Test
@@ -90,7 +106,7 @@ class OXTest {
     }
 
     @Test
-    void checkWinRo2() {
+    void checkWinRow2() {
         OX ox = new OX();
         ox.put(0, 2);
         ox.put(1, 2);
@@ -141,10 +157,10 @@ class OXTest {
     }
 
     @Test
-    void getTurnCount() {
+    void getTurn() {
         OX ox = new OX();
         assertEquals(0, ox.getTurnCount());
-        ox.put(0,0);
+        ox.put(0, 0);
         assertEquals(1, ox.getTurnCount());
     }
 
@@ -165,16 +181,18 @@ class OXTest {
         ox.put(2, 1);
         ox.put(2, 2);
         assertTrue(ox.isDraw());
+
     }
 
     @Test
     void getScoreX() {
         OX ox = new OX();
-        assertEquals(0,ox.getScoreX());
-        ox.put(0,0);
-        ox.put(0,1);
-        ox.put(0,2);
+        assertEquals(0, ox.getScoreX());
+        ox.put(0, 0);
+        ox.put(0, 1);
+        ox.put(0, 2);
         assertEquals(1, ox.getScoreX());
+
     }
 
     @Test
@@ -191,7 +209,9 @@ class OXTest {
     @Test
     void getScoreDraw() {
         OX ox = new OX();
+
         assertEquals(0, ox.getScoreDraw());
+
         ox.put(0, 0);
         ox.put(0, 1);
         ox.put(0, 2);
@@ -206,6 +226,7 @@ class OXTest {
         ox.put(2, 1);
         ox.put(2, 2);
         assertTrue(ox.isDraw());
+
         assertEquals(1, ox.getScoreDraw());
     }
 }
